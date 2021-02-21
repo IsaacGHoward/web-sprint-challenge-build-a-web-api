@@ -6,8 +6,10 @@ const router = express.Router();
 const db = require('./projects-model');
 
 router.get('/', (req, res) => {
-  // RETURN AN ARRAY WITH ALL THE USERS
-  res.send({Message: "Hello!"});
+  db.get()
+  .then((resp) => {
+    res.send(resp);
+  })
 });
 
 
