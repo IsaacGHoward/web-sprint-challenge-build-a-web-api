@@ -28,13 +28,17 @@ router.post('/', middleware.validateAction, middleware.validateLinkedProjectId, 
 });
 
 router.put('/:id', middleware.validateActionId ,middleware.validateLinkedProjectId ,(req,res) => {
-  db.update(req.params.id, req.body)
-  .then((resp) => {
-    res.send(resp);
-  })
-  .catch((err) => {
-    res.send(err);
-  })
+  if(Object.keys(req.body).length === 0)
+    res.status(400).send({ message: "missing action data" });
+  else{
+    db.update(req.params.id, req.body)
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((err) => {
+      res.send(err);
+    })
+  }
 });
 
 router.delete('/:id', middleware.validateActionId, (req,res) => {
