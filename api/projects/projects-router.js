@@ -17,4 +17,14 @@ router.get('/:id', middleware.validateProjectId, (req, res) => {
   res.send(req.project);
 });
 
+router.post('/', middleware.validateProject, (req, res) => {
+  db.insert(req.body)
+  .then((resp)=> {
+    res.send(resp);
+  })
+  .catch((err) => {
+    res.send(err);
+  })
+});
+
 module.exports = router;
