@@ -44,4 +44,11 @@ router.delete('/:id', middleware.validateProjectId, (req,res) => {
   })
 });
 
+router.get('/:id/actions', middleware.validateProjectId, (req,res) => {
+  db.getProjectActions(req.params.id)
+  .then((resp) => {
+    res.send(resp);
+  })
+})
+
 module.exports = router;
