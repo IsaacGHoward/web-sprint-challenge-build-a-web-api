@@ -57,6 +57,8 @@ function validateLinkedProjectId(req,res,next){
         res.status(404).send({ message: "provided project ID is invalid" });
     })
   }
+  else 
+    next();
 }
 
 // do not forget to expose these functions to other modules

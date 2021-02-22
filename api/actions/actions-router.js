@@ -27,4 +27,13 @@ router.post('/', middleware.validateAction, middleware.validateLinkedProjectId, 
   })
 });
 
+router.put('/:id', middleware.validateActionId ,middleware.validateLinkedProjectId ,(req,res) => {
+  db.update(req.params.id, req.body)
+  .then((resp) => {
+    res.send(resp);
+  })
+  .catch((err) => {
+    res.send(err);
+  })
+});
 module.exports = router;
