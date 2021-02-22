@@ -1,5 +1,6 @@
 // Write your "projects" router here!
 const express = require('express');
+const middleware = require('../middleware/middleware');
 
 const router = express.Router();
 
@@ -12,5 +13,8 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/:id', middleware.validateProjectId, (req, res) => {
+  res.send(req.project);
+});
 
 module.exports = router;
