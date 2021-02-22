@@ -37,4 +37,11 @@ router.put('/:id', middleware.validateProjectId ,(req,res) => {
   })
 });
 
+router.delete('/:id', middleware.validateProjectId, (req,res) => {
+  db.remove(req.params.id)
+  .then(() => {
+    res.send({});
+  })
+});
+
 module.exports = router;
